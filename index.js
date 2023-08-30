@@ -7,7 +7,7 @@ const fastify = Fastify({
 });
 
 // Connect to MongoDB
-mongoose.connect("mongodb://localhost/urlshortener", {
+mongoose.connect("mongodb://127.0.0.1:27017/myapp", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
