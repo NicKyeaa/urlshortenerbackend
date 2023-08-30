@@ -1,20 +1,20 @@
 // Import the framework and instantiate it
-import Fastify from "fastify";
-import mongoose from "mongoose";
+import Fastify from 'fastify';
+import mongoose from 'mongoose';
 
 const fastify = Fastify({
   logger: true,
 });
 
 // Connect to MongoDB
-mongoose.connect("mongodb://127.0.0.1:27017/urlshortener", {
+mongoose.connect('mongodb://127.0.0.1:27017/urlshortener', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
 
 // Declare a route
-fastify.get("/", async function handler(request, reply) {
-  return { hello: "world" };
+fastify.get('/', async function handler(request, reply) {
+  return { hello: 'world' };
 });
 
 // Run the server!
