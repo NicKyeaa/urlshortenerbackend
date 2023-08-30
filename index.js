@@ -32,7 +32,13 @@ fastify.post('/shorten', async (req, res) => {
     originalURL: url,
   });
 
-  newURL.save();
+  await newURL.save();
+  res.code(201).send('Short URL is created');
+});
+
+fastify.get('/:shortUrl', async (req, res) => {
+  const shortUrl = await URLModel.findOne({ shortURL: req.params.shortUrl });
+  res.send(shortUrl);
 });
 
 // Run the server!
