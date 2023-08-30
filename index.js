@@ -15,8 +15,9 @@ mongoose.connect('mongodb://127.0.0.1:27017/urlshortener', {
 });
 
 // Declare a route
-fastify.get('/', async function handler(request, reply) {
-  return { hello: 'world' };
+fastify.get('/', async (req, res) => {
+  const URLs = await URLModel.find();
+  res.send(URLs);
 });
 
 fastify.post('/shorten', async (req, res) => {
@@ -38,7 +39,11 @@ fastify.post('/shorten', async (req, res) => {
 
 fastify.get('/:shortUrl', async (req, res) => {
   const shortUrl = await URLModel.findOne({ shortURL: req.params.shortUrl });
+
+  if (shortUrl === null) return res.code(404).send();
+
   res.send(shortUrl);
+  //   res.redirect(shortUrl.originalURL);
 });
 
 // Run the server!
