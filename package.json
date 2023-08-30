@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "fastify": "^4.22.0",
-    "mongoose": "^7.5.0"
+    "mongoose": "^7.5.0",
+    "nanoid": "^4.0.2"
   }
 }
