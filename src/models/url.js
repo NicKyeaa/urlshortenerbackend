@@ -1,5 +1,4 @@
 import mongoose from 'mongoose';
-import { nanoid } from 'nanoid';
 
 const urlSchema = new mongoose.Schema({
   originalURL: {
@@ -9,7 +8,6 @@ const urlSchema = new mongoose.Schema({
   shortURL: {
     type: String,
     required: true,
-    default: nanoid(),
   },
   createdAt: {
     type: Date,
@@ -19,4 +17,4 @@ const urlSchema = new mongoose.Schema({
 
 const URLModel = mongoose.model('URL', urlSchema);
 
-module.exports = URLModel;
+export default URLModel;
