@@ -21,16 +21,16 @@ fastify.get('/', async (req, res) => {
 });
 
 fastify.post('/shorten', async (req, res) => {
-  const { url } = req.body;
+  const { URL } = req.body;
 
-  if (!url) {
+  if (!URL) {
     return res.code(400).send({ error: 'URL is required' });
   }
   const shortURL = nanoid();
 
   const newURL = new URLModel({
     shortURL,
-    originalURL: url,
+    originalURL: URL,
   });
 
   await newURL.save();
