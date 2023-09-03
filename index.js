@@ -40,7 +40,7 @@ fastify.post('/shorten', async (req, res) => {
 
   // Save the short url and send back all of the urls to update the list
   await newURL.save();
-  const allURLs = await newURL.find();
+  const URLs = await URLModel.find();
   res.code(201).send(allURLs);
 });
 
