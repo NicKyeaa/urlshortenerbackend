@@ -48,9 +48,7 @@ fastify.get('/:shortUrl', async (req, res) => {
   const shortUrl = await URLModel.findOne({ shortURL: req.params.shortUrl });
 
   if (shortUrl === null) return res.code(404).send();
-
-  res.send(shortUrl);
-  //   res.redirect(shortUrl.originalURL);
+  res.redirect(shortUrl.originalURL);
 });
 
 // Run the server!
