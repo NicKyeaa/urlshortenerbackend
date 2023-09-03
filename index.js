@@ -1,11 +1,16 @@
 // Import the framework and instantiate it
 import Fastify from 'fastify';
+import cors from '@fastify/cors';
 import mongoose from 'mongoose';
 import { nanoid } from 'nanoid';
 import URLModel from './src/models/url.js';
 
 const fastify = Fastify({
   logger: true,
+});
+await fastify.register(cors, {
+  domain: 'http://localhost:5173',
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
 });
 
 // Connect to MongoDB
@@ -33,8 +38,10 @@ fastify.post('/shorten', async (req, res) => {
     originalURL: URL,
   });
 
+  // Save the short url and send back all of the urls to update the list
   await newURL.save();
-  res.code(201).send('Short URL is created');
+  const allURLs = await newURL.find();
+  res.code(201).send(allURLs);
 });
 
 fastify.get('/:shortUrl', async (req, res) => {
